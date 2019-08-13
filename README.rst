@@ -47,7 +47,7 @@ Use the command line::
 		--oauth2
                               Flag to use or not token for oauth2 before creating the request, used to check published services that uses azure oauth2
         -e [EXTRA_ARGS], --extra_args [EXTRA_ARGS]
-                                extra args to add to curl, see `curl manpage <https://curl.haxx.se/docs/manpage.html>`_.
+                              extra args
 
 
 Example usage
@@ -73,7 +73,7 @@ Example service::
     define service {
             host_name                       SERVERX
             service_description             service_name
-            check_command                   check_http_curl!http://url/path!admin123!pass1234!http://authurl/oauth2!instancename
+            check_command                   check_nagios_historian!http://url/path!admin123!pass1234!http://authurl/oauth2!instancename
             use				                generic-service
             notes                           some useful notes
     }
