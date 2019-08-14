@@ -133,29 +133,30 @@ class HistorianChecks:
                     retrcode = CRITICAL
                     retrcodetag = CRITICAL
 
+                #STATUS_LAST_UPDATE (LAST UPDATE > ACTUAL TIME -1 MINUTE)
                 if TagName in [self.STATUS_LAST_UPDATE]:                    
                     last_update_time = arrow.get(Value , 'DD/MM/YYYY HH:mm:ss')
                     actual = actual_time.shift(hours=-3, minutes=-1)
-                    #import pdb; pdb.set_trace()
                     if last_update_time > actual:
                         retrcode = OK
                         retrcodetag = OK  
-                          
+
+                #STATUS_SAC_OVERRUNS (Value < 10)          
                 if TagName in [self.STATUS_SAC_OVERRUNS]:              
                     if Value < '10':                        
                         retrcode = OK
                         retrcodetag = OK             
-
+                #STATUS_SAC_CYCLES_SEC (Values = 20)
                 if TagName in [self.STATUS_SAC_CYCLES_SEC]:
                     if Value == '20':
                         retrcode = OK
                         retrcodetag = OK
-
+                #STATUS_SAC_STATUS and STATUS_WS_SERVICE (Values = 1)
                 if TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE]:
                     if Value == '1':
                         retrcode = OK
                         retrcodetag = OK  
-
+            #Only info
             if TagName in [self.STATUS_WS_ACTIVE_SESSIONS , self.STATUS_WS_CLIENT_CONNECTIONS , self.STATUS_WS_HOST_CONNECTIONS , self.STATUS_WS_MAXIMUM_SESSIONS]:
                 retrcode = OK
                 retrcodetag = OK

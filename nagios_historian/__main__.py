@@ -136,7 +136,6 @@ def cli_execution(options):
     #    perfdata=message.get('perfdata')
     #))
     # Exit with status code
-    import pdb; pdb.set_trace()
     raise SystemExit(message['status'])
 
 # Argument parser
