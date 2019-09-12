@@ -52,7 +52,7 @@ class HistorianChecks:
     def get_tags_data(self):
     
 		#Ignore warnings HTTPS unverified
-		requests.packages.urllib3.disable_warnings()
+		urllib3.disable_warnings()
         # Request JSON machines
         #headers = {'accept': 'application/json'}
         header_token = {"Authorization": "Bearer {}".format(self.access_token)}
