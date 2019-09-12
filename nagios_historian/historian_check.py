@@ -48,12 +48,12 @@ class HistorianChecks:
         self.STATUS_WS_MAXIMUM_SESSIONS = '{}'.format(self.instance) + '.STATUS_WS_MAXIMUM_SESSIONS.F_CV'
         self.STATUS_WS_SERVICE = '{}'.format(self.instance) + '.STATUS_WS_SERVICE.F_CV'
         self.STATUS_LAST_UPDATE = '{}'.format(self.instance) + '.STATUS_LAST_UPDATE.A_CV'
-
+		#Disable warnings HTTPS verification
+		urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+		
     def get_tags_data(self):
     
-		#Ignore warnings HTTPS unverified
-		urllib3.disable_warnings()
-        # Request JSON machines
+		
         #headers = {'accept': 'application/json'}
         header_token = {"Authorization": "Bearer {}".format(self.access_token)}
 
