@@ -3,11 +3,6 @@
 import requests
 import json
 import arrow
-import urllib3
-#Disable warnings HTTPS verification
-urllib3.disable_warnings()
-
-#urllib3.exceptions.InsecureRequestWarning
 
 # Return codes expected by Nagios
 OK = 0
@@ -53,10 +48,10 @@ class HistorianChecks:
         self.STATUS_WS_SERVICE = '{}'.format(self.instance) + '.STATUS_WS_SERVICE.F_CV'
         self.STATUS_LAST_UPDATE = '{}'.format(self.instance) + '.STATUS_LAST_UPDATE.A_CV'
 
-		
     def get_tags_data(self):
     
 
+        # Request JSON machines
         #headers = {'accept': 'application/json'}
         header_token = {"Authorization": "Bearer {}".format(self.access_token)}
 
@@ -72,7 +67,6 @@ class HistorianChecks:
 
         #Vars
         retrcode = OK
-		
 
         #Create tuple with json and status code
         historian_tuple = self.get_tags_data()
