@@ -3,6 +3,7 @@
 import requests
 import json
 import arrow
+import urllib3
 
 # Return codes expected by Nagios
 OK = 0
@@ -50,7 +51,8 @@ class HistorianChecks:
 
     def get_tags_data(self):
     
-
+		#Ignore warnings HTTPS unverified
+		urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
         # Request JSON machines
         #headers = {'accept': 'application/json'}
         header_token = {"Authorization": "Bearer {}".format(self.access_token)}
