@@ -3,6 +3,7 @@
 import requests
 import json
 import arrow
+import urllib3
 
 # Return codes expected by Nagios
 OK = 0
@@ -10,6 +11,8 @@ WARNING = 1
 CRITICAL = 2
 UNKNOWN = 3
 
+#Disable warnings https
+urllib3.disable_warnings()
 
 class HistorianChecks:
     def __init__(self, url, access_token, instance):
