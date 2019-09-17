@@ -118,12 +118,15 @@ def cli_execution(options):
         else:
             status = OK
             message['summary'] = 'OK: '
-        return status
-
+        return 
+        
+   
     # Check logic starts here
     data = collect_data()
     message['status'] = check(data[0])
     # Add summary
+    from pprint import pprint
+    pprint(data[1])
     message['summary'] += data[1]
     # Add perfdata
 
