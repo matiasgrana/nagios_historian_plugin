@@ -127,8 +127,6 @@ def cli_execution(options):
     # Add summary       
     message['summary'] += data[1]
     # Add perfdata
-    from pprint import pprint
-    pprint(message['summary'])
     # total = len(data)
     #message['perfdata'] = curlnagiosobj.format_perfdata()
 
@@ -138,7 +136,7 @@ def cli_execution(options):
     #    perfdata=message.get('perfdata')
     #))
     # Exit with status code
-    raise SystemExit(message['status'])
+    raise SystemExit(message['status'] + message['summary'])
 
 # Argument parser
 # https://docs.python.org/3.5/library/argparse.html
