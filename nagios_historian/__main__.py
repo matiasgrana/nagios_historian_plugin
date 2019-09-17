@@ -131,12 +131,12 @@ def cli_execution(options):
     #message['perfdata'] = curlnagiosobj.format_perfdata()
 
     # Print the message
-    #print("{summary}|{perfdata}".format(
-    #    summary=message.get('summary'),
-    #    perfdata=message.get('perfdata')
-    #))
+    # Print the message
+    print("{summary}".format(
+        summary=message.get('summary')
+    ))
     # Exit with status code
-    raise SystemExit(message['status'] + message['summary'])
+    raise SystemExit(message['status'])
 
 # Argument parser
 # https://docs.python.org/3.5/library/argparse.html
