@@ -124,12 +124,11 @@ def cli_execution(options):
     # Check logic starts here
     data = collect_data()
     message['status'] = check(data[0])
-    # Add summary
-    from pprint import pprint
-    pprint(data[1])
+    # Add summary       
     message['summary'] += data[1]
     # Add perfdata
-
+    from pprint import pprint
+    pprint(message['summary'])
     # total = len(data)
     #message['perfdata'] = curlnagiosobj.format_perfdata()
 
