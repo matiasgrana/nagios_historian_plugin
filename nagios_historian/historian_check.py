@@ -127,7 +127,7 @@ class HistorianChecks:
                     retrcodetag = CRITICAL
 
                 #Validate Value (0 = Ok) 
-                if not TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE, self.STATUS_SAC_CYCLES_SEC, self.STATUS_SAC_OVERRUNS]:   
+                if not TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE, self.STATUS_SAC_CYCLES_SEC, self.STATUS_SAC_OVERRUNS, self.STATUS_WS_ACTIVE_SESSIONS , self.STATUS_WS_CLIENT_CONNECTIONS , self.STATUS_WS_HOST_CONNECTIONS , self.STATUS_WS_MAXIMUM_SESSIONS]:   
                     if Value != '0':
                         retrcode = CRITICAL
                         retrcodetag = CRITICAL
@@ -155,7 +155,7 @@ class HistorianChecks:
                     import pdb; pdb.set_trace()
                     if Value != '20':                        
                         retrcode = CRITICAL
-                        retrcodetag = CRITICAL                        
+                        retrcodetag = CRITICAL   
 
             
             if retrcodetag != 0:
