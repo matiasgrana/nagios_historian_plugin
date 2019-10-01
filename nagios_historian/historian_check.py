@@ -70,7 +70,7 @@ class HistorianChecks:
 
         #Vars
         retrcode = OK
-		retrcodetag = OK
+		#retrcodetag = OK
 
         #Create tuple with json and status code
         historian_tuple = self.get_tags_data()
