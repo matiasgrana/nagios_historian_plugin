@@ -122,7 +122,6 @@ def cli_execution(options):
         
    
     # Check logic starts here
-    import pdb; pdb.set_trace()
     data = collect_data()
     message['status'] = check(data[0])
     # Add summary       
@@ -130,7 +129,8 @@ def cli_execution(options):
     # Add perfdata
     # total = len(data)
     #message['perfdata'] = curlnagiosobj.format_perfdata()
-
+    import pdb; pdb.set_trace()
+    
     # Print the message
     # Print the message
     print("{summary}".format(
