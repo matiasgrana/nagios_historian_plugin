@@ -106,7 +106,6 @@ def cli_execution(options):
 
     def collect_data():        
         retrcode, msgdata = historianobj.check_tags_data()
-        import pdb; pdb.set_trace()
         return retrcode, msgdata
     
     def check(retrcode):
