@@ -141,6 +141,7 @@ class HistorianChecks:
                 if TagName in [self.STATUS_LAST_UPDATE] and Value !='0.0000':      
                     last_update_time = arrow.get(Value , 'DD/MM/YYYY HH:mm:ss')
                     actual = actual_time.shift(hours=-3, minutes=-5)
+                    import pdb; pdb.set_trace()
                     if not last_update_time > actual:
                         retrcode = CRITICAL
                         retrcodetag = CRITICAL
