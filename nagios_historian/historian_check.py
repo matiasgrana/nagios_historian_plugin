@@ -11,10 +11,6 @@ WARNING = 1
 CRITICAL = 2
 UNKNOWN = 3
 
-###
-retrcode = OK
-retrcodetag = OK
-
 #Disable warnings https
 urllib3.disable_warnings()
 
@@ -74,6 +70,7 @@ class HistorianChecks:
 
         #Vars
         retrcode = OK
+		retrcodetag = OK
 
         #Create tuple with json and status code
         historian_tuple = self.get_tags_data()
@@ -96,14 +93,14 @@ class HistorianChecks:
 
         #Validate Data
         for i, val in enumerate(historian_data['Data']):
-            
+            retrcodetag = OK
             ErrorCode = val.get('ErrorCode', 1)
             TagName = val.get('TagName', '')
             Samples = val.get('Samples', [])
             SamplesN = 0
             
             msgdata += 'Tag: {}, ErrorCode: {} \n'.format(val.get('TagName'), ErrorCode)
-            import pdb; pdb.set_trace()
+
             #Validate ErrorCode (0 = Ok)
             if ErrorCode != 0:
                 retrcode = CRITICAL
@@ -145,13 +142,13 @@ class HistorianChecks:
                     actual = actual_time.shift(hours=-3, minutes=-1)
                     if last_update_time < actual:
                         retrcode = CRITICAL
-                        retrcodetag = CRITICAL  
+                        retrcodetag = CRITICAL
 
                 #STATUS_SAC_OVERRUNS (Value < 10)          
                 if TagName in [self.STATUS_SAC_OVERRUNS]:              
-                    if Value >= '10':                        
+                    if Value > '10':                        
                         retrcode = CRITICAL
-                        retrcodetag = CRITICAL             
+                        retrcodetag = CRITICAL          
                 #STATUS_SAC_CYCLES_SEC (Values = 20)
                 if TagName in [self.STATUS_SAC_CYCLES_SEC]:
                     if Value != '20':
@@ -161,11 +158,7 @@ class HistorianChecks:
                 if TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE]:
                     if Value != '1':
                         retrcode = CRITICAL
-                        retrcodetag = CRITICAL  
-            #Only info
-            #if TagName in [self.STATUS_WS_ACTIVE_SESSIONS , self.STATUS_WS_CLIENT_CONNECTIONS , self.STATUS_WS_HOST_CONNECTIONS , self.STATUS_WS_MAXIMUM_SESSIONS]:
-            #    retrcode = OK
-            #    retrcodetag = OK
+                        retrcodetag = CRITICAL
             
             if retrcodetag != 0:
                 msgerror += 'ERROR: Tagname: {} \n'.format(TagName)
