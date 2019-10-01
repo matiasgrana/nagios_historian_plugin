@@ -106,6 +106,7 @@ def cli_execution(options):
 
     def collect_data():        
         retrcode, msgdata = historianobj.check_tags_data()
+        import pdb; pdb.set_trace()
         return retrcode, msgdata
     
     def check(retrcode):
@@ -123,13 +124,13 @@ def cli_execution(options):
    
     # Check logic starts here
     data = collect_data()
-    message['status'] = check(data[0])
+    message['status'] = check(data[1])
     # Add summary       
     message['summary'] += data[1]
     # Add perfdata
     # total = len(data)
     #message['perfdata'] = curlnagiosobj.format_perfdata()
-    import pdb; pdb.set_trace()
+    
     
     # Print the message
     # Print the message
