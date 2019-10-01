@@ -126,10 +126,11 @@ class HistorianChecks:
                     retrcode = CRITICAL
                     retrcodetag = CRITICAL
 
-                #Validate Value (0 = Ok)    
-                if Value != '0':
-                    retrcode = CRITICAL
-                    retrcodetag = CRITICAL
+                #Validate Value (0 = Ok) 
+                if not TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE, self.STATUS_SAC_CYCLES_SEC, self.STATUS_SAC_OVERRUNS]:   
+                    if Value != '0':
+                        retrcode = CRITICAL
+                        retrcodetag = CRITICAL
 
                 #STATUS_SAC_STATUS / STATUS_WS_SERVICE - ( 0=STOP | 1=RUN )
                 if TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE] and Value != '1':
@@ -155,11 +156,7 @@ class HistorianChecks:
                     if Value != '20':                        
                         retrcode = CRITICAL
                         retrcodetag = CRITICAL                        
-                #STATUS_SAC_STATUS and STATUS_WS_SERVICE (Values = 1)
-                if TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE]:
-                    if Value != '1':
-                        retrcode = CRITICAL
-                        retrcodetag = CRITICAL
+
             
             if retrcodetag != 0:
                 msgerror += 'ERROR: Tagname: {} \n'.format(TagName)
