@@ -124,7 +124,7 @@ def cli_execution(options):
    
     # Check logic starts here
     data = collect_data()
-    message['status'] = check(data[1])
+    message['status'] = check(data[0])
     # Add summary       
     message['summary'] += data[1]
     # Add perfdata
