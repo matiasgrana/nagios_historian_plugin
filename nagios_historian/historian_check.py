@@ -11,6 +11,10 @@ WARNING = 1
 CRITICAL = 2
 UNKNOWN = 3
 
+###
+retrcode = OK
+retrcodetag = OK
+
 #Disable warnings https
 urllib3.disable_warnings()
 
@@ -92,8 +96,7 @@ class HistorianChecks:
 
         #Validate Data
         for i, val in enumerate(historian_data['Data']):
-            retrcode = OK
-            retrcodetag = OK
+            
             ErrorCode = val.get('ErrorCode', 1)
             TagName = val.get('TagName', '')
             Samples = val.get('Samples', [])
