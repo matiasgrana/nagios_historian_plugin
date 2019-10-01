@@ -100,7 +100,7 @@ class HistorianChecks:
             SamplesN = 0
             
             msgdata += 'Tag: {}, ErrorCode: {} \n'.format(val.get('TagName'), ErrorCode)
-
+            import pdb; pdb.set_trace()
             #Validate ErrorCode (0 = Ok)
             if ErrorCode != 0:
                 retrcode = CRITICAL
@@ -154,7 +154,7 @@ class HistorianChecks:
                     if Value != '20':
                         retrcode = CRITICAL
                         retrcodetag = CRITICAL
-                STATUS_SAC_STATUS and STATUS_WS_SERVICE (Values = 1)
+                #STATUS_SAC_STATUS and STATUS_WS_SERVICE (Values = 1)
                 if TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE]:
                     if Value != '1':
                         retrcode = CRITICAL
