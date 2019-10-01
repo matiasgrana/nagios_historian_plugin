@@ -112,15 +112,14 @@ def cli_execution(options):
     def check(retrcode):
         if retrcode >= 2:
             status = CRITICAL
-            message['summary'] = 'CRITICAL: '
-            import pdb; pdb.set_trace()
+            message['summary'] = 'CRITICAL: '            
         elif retrcode == 1:
             status = WARNING
             message['summary'] = 'WARNING: '
         else:
             status = OK
             message['summary'] = 'OK: '
-        return 
+        return status
         
    
     # Check logic starts here
@@ -133,7 +132,7 @@ def cli_execution(options):
     #message['perfdata'] = curlnagiosobj.format_perfdata()    
     # Print the message
     # Print the message
-    
+    import pdb; pdb.set_trace()
     print("{summary}".format(
         summary=message.get('summary')
     ))
