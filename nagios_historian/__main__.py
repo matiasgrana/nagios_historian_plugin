@@ -132,7 +132,7 @@ def cli_execution(options):
     #message['perfdata'] = curlnagiosobj.format_perfdata()    
     # Print the message
     # Print the message
-    import pdb; pdb.set_trace()
+    
     print("{summary}".format(
         summary=message.get('summary')
     ))

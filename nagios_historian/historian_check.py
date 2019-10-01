@@ -152,8 +152,9 @@ class HistorianChecks:
                 #STATUS_SAC_CYCLES_SEC (Values = 20)
                 if TagName in [self.STATUS_SAC_CYCLES_SEC]:
                     if Value != '20':
+                        import pdb; pdb.set_trace()
                         retrcode = CRITICAL
-                        retrcodetag = CRITICAL
+                        retrcodetag = CRITICAL                        
                 #STATUS_SAC_STATUS and STATUS_WS_SERVICE (Values = 1)
                 if TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE]:
                     if Value != '1':
