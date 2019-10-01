@@ -129,12 +129,10 @@ def cli_execution(options):
     message['summary'] += data[1]
     # Add perfdata
     # total = len(data)
-    #message['perfdata'] = curlnagiosobj.format_perfdata()
-
-	import pdb; pdb.set_trace()
-    
+    #message['perfdata'] = curlnagiosobj.format_perfdata()    
     # Print the message
     # Print the message
+    import pdb; pdb.set_trace()
     print("{summary}".format(
         summary=message.get('summary')
     ))
