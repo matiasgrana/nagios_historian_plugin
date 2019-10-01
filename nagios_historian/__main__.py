@@ -122,6 +122,7 @@ def cli_execution(options):
         
    
     # Check logic starts here
+    import pdb; pdb.set_trace()
     data = collect_data()
     message['status'] = check(data[0])
     # Add summary       
