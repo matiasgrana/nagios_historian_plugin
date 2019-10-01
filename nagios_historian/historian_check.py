@@ -127,7 +127,7 @@ class HistorianChecks:
                     retrcodetag = CRITICAL
 
                 #Validate Value (0 = Ok) 
-                if not TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE, self.STATUS_SAC_CYCLES_SEC, self.STATUS_SAC_OVERRUNS, self.STATUS_WS_ACTIVE_SESSIONS , self.STATUS_WS_CLIENT_CONNECTIONS , self.STATUS_WS_HOST_CONNECTIONS , self.STATUS_WS_MAXIMUM_SESSIONS]:   
+                if not TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE, self.STATUS_SAC_CYCLES_SEC, self.STATUS_SAC_OVERRUNS, self.STATUS_WS_ACTIVE_SESSIONS , self.STATUS_WS_CLIENT_CONNECTIONS , self.STATUS_WS_HOST_CONNECTIONS , self.STATUS_WS_MAXIMUM_SESSIONS, self.STATUS_LAST_UPDATE]:   
                     if Value != '0':
                         retrcode = CRITICAL
                         retrcodetag = CRITICAL
@@ -140,8 +140,7 @@ class HistorianChecks:
                 #STATUS_LAST_UPDATE (LAST UPDATE > ACTUAL TIME -1 MINUTE)
                 if TagName in [self.STATUS_LAST_UPDATE] and Value !='0.0000':      
                     last_update_time = arrow.get(Value , 'DD/MM/YYYY HH:mm:ss')
-                    actual = actual_time.shift(hours=-3, minutes=-5)
-                    import pdb; pdb.set_trace()
+                    actual = actual_time.shift(hours=-3, minutes=-5)                    
                     if not last_update_time > actual:
                         retrcode = CRITICAL
                         retrcodetag = CRITICAL
