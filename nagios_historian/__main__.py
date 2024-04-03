@@ -53,8 +53,8 @@ def parse_args(args):
                             help='oauth2 grant_type \n')
     parser.add_argument('--auth_url', dest='auth_url', nargs='?', default=None, const=None,
                             help='oauth2 auth_url example: https://login.microsoftonline.com/company.onmicrosoft.com/oauth2/v2.0/token \n')
-    parser.add_argument('--instance', dest='instance', nargs='?', default=None, const=None,
-                        help='instance name of historian \n')
+    parser.add_argument('--tags', dest='tags', nargs='?', default=None, const=None,
+                        help='tags names of historian \n')
     parser.add_argument('--oauth2', action='store_true',
                             help='''Flag to use or not token for oauth2 before creating the request, used to check published services that uses azure oauth2 \n
                                     See https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow#refresh-the-access-token \n''')
@@ -102,7 +102,7 @@ def cli_execution(options):
     #Create historian object    
     historianobj = HistorianChecks(url=options.url,
                               access_token=access_token,
-                              instance=options.instance)
+                              tags=options.tags)
 
     def collect_data():        
         retrcode, msgdata = historianobj.check_tags_data()
