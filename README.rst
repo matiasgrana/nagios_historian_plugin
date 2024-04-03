@@ -42,8 +42,8 @@ Use the command line::
                               oauth2 client_secret client password
 		--auth_url
                               oauth2 auth_url example: https://login.microsoftonline.com/company.onmicrosoft.com/oauth2/v2.0/token
-		--instance
-                              instance name of historian
+		--tags
+                              tags names of historian
 		--oauth2
                               Flag to use or not token for oauth2 before creating the request, used to check published services that uses azure oauth2
         -e [EXTRA_ARGS], --extra_args [EXTRA_ARGS]
@@ -55,7 +55,7 @@ Example usage
 
 Example use:
 
-    > nagios_historian -u "https://xxx/yyy/currentvalue?tagNames=" --client_id "admin1234" --client_secret "pass1234" --auth_url "https://xxxx/oauth/token" --oauth2 --instance "instancename"
+    > nagios_historian -u "https://xxx/yyy/currentvalue?tagNames=" --client_id "admin1234" --client_secret "pass1234" --auth_url "https://xxxx/oauth/token" --oauth2 --tags "TAG1;TAG2;TAG3"
 
 
 Nagios config
@@ -65,7 +65,7 @@ Example command::
 
     define command{
         command_name  check_nagios_historian
-        command_line  /usr/local/bin/nagios_historian -u "$ARG1$" --client_id "$ARG2$" --client_secret "$ARG3$" --auth_url "$ARG4$" --oauth2 --instance "$ARG5$" --extra_args='$ARG6$'
+        command_line  /usr/local/bin/nagios_historian -u "$ARG1$" --client_id "$ARG2$" --client_secret "$ARG3$" --auth_url "$ARG4$" --oauth2 --tags "$ARG5$" --extra_args='$ARG6$'
     }
 
 Example service::
