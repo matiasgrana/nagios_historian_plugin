@@ -73,7 +73,7 @@ Example service::
     define service {
             host_name                       SERVERX
             service_description             service_name
-            check_command                   check_nagios_historian!http://url/path!admin123!pass1234!http://authurl/oauth2!instancename
+            check_command                   check_nagios_historian!http://url/path!admin123!pass1234!http://authurl/oauth2!Tags
             use				                generic-service
             notes                           some useful notes
     }
