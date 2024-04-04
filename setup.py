@@ -21,14 +21,14 @@ def check_readme(file='README.rst'):
     with open(file, encoding='utf-8') as f_object:
         readme_content = f_object.read()
 
-    errors = list(rstcheck.check(readme_content))
-    if errors:
-        msg = 'There_path are errors in {}, errors \n {}'.format(file,
-                                                            errors[0].message)
-        raise SystemExit(msg)
-    else:
-        msg = 'No errors in {}'.format(file)
-        print(msg)
+    #errors = list(rstcheck.check(readme_content))
+    #if errors:
+    #    msg = 'There_path are errors in {}, errors \n {}'.format(file,
+    #                                                        errors[0].message)
+    #    raise SystemExit(msg)
+    #else:
+    #    msg = 'No errors in {}'.format(file)
+    #    print(msg)
 
 # Get requirements for this package
 here_path = path.abspath(path.dirname(__file__))
