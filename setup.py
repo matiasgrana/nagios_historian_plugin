@@ -4,7 +4,7 @@
 import os
 from os import path
 from setuptools import setup, find_packages
-import rstcheck
+#import rstcheck
 
 
 mypackage_root_dir = 'nagios_historian'
