@@ -21,7 +21,7 @@ class HistorianChecks:
         self.url = url
         self.access_token = access_token
         self.tags = tags
-        self.instance
+        self.instance = instance
 
         self.STATUS_SAC_CYCLES_SEC = '{}'.format(self.instance) + '.STATUS_SAC_CYCLES_SEC.F_CV'
         self.STATUS_SAC_OVERRUNS = '{}'.format(self.instance) + '.STATUS_SAC_OVERRUNS.F_CV'
