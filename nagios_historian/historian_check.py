@@ -42,7 +42,6 @@ class HistorianChecks:
 
         #Add tags to the URL
         url = '{}'.format(self.url) + '{}'.format(self.tags)
-        print (url)
 
         # requests doc http://docs.python-requests.org/en/v0.10.7/user/quickstart/#custom-headers
         r = requests.get(url=url, headers=header_token, verify=False)
