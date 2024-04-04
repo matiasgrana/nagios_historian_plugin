@@ -21,6 +21,17 @@ class HistorianChecks:
         self.url = url
         self.access_token = access_token
         self.tags = tags
+        self.intance
+
+        self.STATUS_SAC_CYCLES_SEC = '{}'.format(self.instance) + '.STATUS_SAC_CYCLES_SEC.F_CV'
+        self.STATUS_SAC_OVERRUNS = '{}'.format(self.instance) + '.STATUS_SAC_OVERRUNS.F_CV'
+        self.STATUS_SAC_STATUS = '{}'.format(self.instance) + '.STATUS_SAC_STATUS.F_CV'
+        self.STATUS_WS_ACTIVE_SESSIONS = '{}'.format(self.instance) + '.STATUS_WS_ACTIVE_SESSIONS.F_CV'
+        self.STATUS_WS_CLIENT_CONNECTIONS = '{}'.format(self.instance) + '.STATUS_WS_CLIENT_CONNECTIONS.F_CV'
+        self.STATUS_WS_HOST_CONNECTIONS = '{}'.format(self.instance) + '.STATUS_WS_HOST_CONNECTIONS.F_CV'
+        self.STATUS_WS_MAXIMUM_SESSIONS = '{}'.format(self.instance) + '.STATUS_WS_MAXIMUM_SESSIONS.F_CV'
+        self.STATUS_WS_SERVICE = '{}'.format(self.instance) + '.STATUS_WS_SERVICE.F_CV'
+        self.STATUS_LAST_UPDATE = '{}'.format(self.instance) + '.STATUS_LAST_UPDATE.A_CV'
 
     def get_tags_data(self):
 
@@ -51,11 +62,12 @@ class HistorianChecks:
         historian_data = historian_tuple[0]
 
 
-        perfdata_list = ["STATUS_SAC_CYCLES_SEC", "STATUS_WS_ACTIVE_SESSIONS","STATUS_SAC_OVERRUNS","STATUS_WS_CLIENT_CONNECTIONS"]
+        perfdata_list = ['{}'.format(self.STATUS_SAC_CYCLES_SEC), '{}'.format(self.STATUS_WS_ACTIVE_SESSIONS), 
+                        '{}'.format(self.STATUS_SAC_OVERRUNS), '{}'.format(self.STATUS_WS_CLIENT_CONNECTIONS)]
+        
+        tags_max_value = {'{}'.format(self.STATUS_SAC_OVERRUNS): 10}
 
-        #tags_max_value = {'{}'.format(self.STATUS_SAC_OVERRUNS): 10}
-
-        #tags_warn_value = {'{}'.format(self.STATUS_SAC_OVERRUNS): 5}
+        tags_warn_value = {'{}'.format(self.STATUS_SAC_OVERRUNS): 5}
 
         msgdata = ''
         msgerror = ''
@@ -99,35 +111,33 @@ class HistorianChecks:
                     retrcodetag = CRITICAL
 
                 #Validate Value (0 = Ok)
-                if not TagName in ["STATUS_SAC_STATUS" , "STATUS_WS_SERVICE", "STATUS_SAC_CYCLES_SEC" , "STATUS_SAC_OVERRUNS", "STATUS_WS_ACTIVE_SESSIONS" ,"STATUS_WS_CLIENT_CONNECTIONS" , "STATUS_WS_HOST_CONNECTIONS" , "STATUS_WS_MAXIMUM_SESSIONS", "STATUS_LAST_UPDATE"]:
-                    if Value != '0':
+                if not TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE, self.STATUS_SAC_CYCLES_SEC, self.STATUS_SAC_OVERRUNS, self.STATUS_WS_ACTIVE_SESSIONS , self.STATUS_WS_CLIENT_CONNECTIONS , self.STATUS_WS_HOST_CONNECTIONS , self.STATUS_WS_MAXIMUM_SESSIONS, self.STATUS_LAST_UPDATE]:                       if Value != '0':
                         retrcode = CRITICAL
                         retrcodetag = CRITICAL
 
                 #STATUS_SAC_STATUS / STATUS_WS_SERVICE - ( 0=STOP | 1=RUN )
-                if TagName in ["STATUS_SAC_STATUS" , "STATUS_WS_SERVICE"] and Value != '1':
+                if TagName in [self.STATUS_SAC_STATUS , self.STATUS_WS_SERVICE] and Value != '1':
                     retrcode = CRITICAL
                     retrcodetag = CRITICAL
 
                 #STATUS_LAST_UPDATE (LAST UPDATE > ACTUAL TIME -1 MINUTE)
-                if TagName in ["STATUS_LAST_UPDATE"] and Value !='0.0000':
+                if TagName in [self.STATUS_LAST_UPDATE] and Value !='0.0000':      
                     last_update_time = arrow.get(Value , 'DD/MM/YYYY HH:mm:ss')
-                    actual = actual_time.shift(hours=-3, minutes=-5)
+                    actual = actual_time.shift(hours=-3, minutes=-5)                    
                     if not last_update_time > actual:
                         retrcode = CRITICAL
                         retrcodetag = CRITICAL
 
-                #STATUS_SAC_OVERRUNS (Value < 10)
-                if TagName in ["STATUS_SAC_OVERRUNS"]:
-                    if Value > '10':
+                #STATUS_SAC_OVERRUNS (Value < 10)          
+                if TagName in [self.STATUS_SAC_OVERRUNS]:              
+                    if Value > '10':                        
                         retrcode = CRITICAL
-                        retrcodetag = CRITICAL
-
+                        retrcodetag = CRITICAL          
                 #STATUS_SAC_CYCLES_SEC (Values = 20)
-                if TagName in ["STATUS_SAC_CYCLES_SEC"]:
-                    if Value != '20':
+                if TagName in [self.STATUS_SAC_CYCLES_SEC]:
+                    if Value != '20':                        
                         retrcode = CRITICAL
-                        retrcodetag = CRITICAL
+                        retrcodetag = CRITICAL 
 
 
             if retrcodetag != 0:
