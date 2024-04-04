@@ -30,10 +30,14 @@ def check_readme(file='README.rst'):
     #    msg = 'No errors in {}'.format(file)
     #    print(msg)
 
-# Get requirements for this package
-here_path = path.abspath(path.dirname(__file__))
-with open(os.path.join(here_path, 'requirements.txt')) as f:
-    requires = [x.strip() for x in f if x.strip()]
+if os.path.isfile('./requirements.txt'):
+    with open(os.path.join(here_path, 'requirements.txt')) as f:
+        requires = [x.strip() for x in f if x.strip()]
+elif os.path.isfile('./' + name_package + '.egg-info/requires.txt'):
+    with open('./' + name_package + '.egg-info/requires.txt') as f:
+        requires = [x.strip() for x in f if x.strip()]
+else:
+    requires=""
 
 # Get the version from VERSION file
 with open(os.path.join(mypackage_root_dir, 'VERSION')) as version_file:
