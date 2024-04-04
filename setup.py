@@ -8,6 +8,9 @@ from setuptools import setup, find_packages
 
 
 mypackage_root_dir = 'nagios_historian'
+name_package = 'nagios_historian_plugin'
+
+
 
 # function to check a readme file
 def check_readme(file='README.rst'):
@@ -29,6 +32,9 @@ def check_readme(file='README.rst'):
     #else:
     #    msg = 'No errors in {}'.format(file)
     #    print(msg)
+
+# Get requirements for this package
+here_path = path.abspath(path.dirname(__file__))
 
 if os.path.isfile('./requirements.txt'):
     with open(os.path.join(here_path, 'requirements.txt')) as f:
