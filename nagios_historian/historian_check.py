@@ -15,7 +15,7 @@ UNKNOWN = 3
 urllib3.disable_warnings()
 
 class HistorianChecks:
-    def __init__(self, url, access_token, tags):
+    def __init__(self, url, access_token, tags, instance):
 
         #initial
         self.url = url
