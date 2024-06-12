@@ -135,7 +135,7 @@ class HistorianChecks:
                         retrcodetag = CRITICAL          
                 #STATUS_SAC_CYCLES_SEC (Values = 20)
                 if TagName in [self.STATUS_SAC_CYCLES_SEC]:
-                    if Value != '20':                        
+                    if Value < '16':                        
                         retrcode = CRITICAL
                         retrcodetag = CRITICAL 
 
